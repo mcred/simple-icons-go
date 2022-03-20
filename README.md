@@ -1,4 +1,8 @@
 # Simple Icons Go
+[![Maintainability](https://api.codeclimate.com/v1/badges/0f949ef474978655b7bf/maintainability)](https://codeclimate.com/github/mcred/simple-icons-go/maintainability)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mcred/simple-icons-go)
+![GitHub all releases](https://img.shields.io/github/downloads/mcred/simple-icons-go/total)
+
 
 Go wrapper for the [simple-icons](https://github.com/simple-icons/simple-icons) repo. Browse icons on their [website](https://simpleicons.org/)
 
