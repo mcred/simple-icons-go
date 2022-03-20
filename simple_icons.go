@@ -3,8 +3,10 @@ package simple_icons_go
 import (
 	_ "embed" // Embed Import for Package Files
 	"errors"
-	"io/ioutil"
 )
+
+//go:embed SI_VERSION
+var version string
 
 type SimpleIcon struct {
 	release Release
@@ -13,11 +15,7 @@ type SimpleIcon struct {
 }
 
 func Load() SimpleIcon {
-	version, err := ioutil.ReadFile("SI_VERSION")
-	if err != nil {
-		panic(err)
-	}
-	release := LoadRelease(string(version))
+	release := LoadRelease(version)
 	return SimpleIcon{
 		release: release,
 		slugs:   release.GetSlugs(),
