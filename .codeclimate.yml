@@ -1,0 +1,9 @@
+exclude_patterns:
+  - "assets/"
+  - "tests/"
+engines:
+  golint:
+    enabled: true
+    checks:
+      GoLint/Imports/ImportDot:
+        enabled: false
