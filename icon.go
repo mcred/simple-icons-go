@@ -7,7 +7,7 @@ type Icon struct {
 	Source     string  `json:"source"`
 	Svg        string  `json:"svg"`
 	Guidelines string  `json:"guidelines"`
-	License    License ` json:"license"`
+	License    License `json:"license"`
 }
 
 type Icons struct {
