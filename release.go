@@ -17,14 +17,14 @@ type Release struct {
 func LoadRelease(v string) Release {
 	r := Release{
 		Version: v,
-		File:    "vendor/simple-icons/" + v + ".zip",
+		File:    "assets/simple-icons/" + v + ".zip",
 	}
 	return r
 }
 
 func (r Release) GetSlugs() []Slug {
 	var s []Slug
-	file, _ := os.Open("vendor/simple-icons/simple-icons-" + r.Version + "/slugs.md")
+	file, _ := os.Open("assets/simple-icons/simple-icons-" + r.Version + "/slugs.md")
 	reader := bufio.NewReader(file)
 	for {
 		line, err := reader.ReadString('\n')
@@ -44,7 +44,7 @@ func (r Release) GetSlugs() []Slug {
 
 func (r Release) GetIcons() Icons {
 	var i Icons
-	rawData, err := ioutil.ReadFile("vendor/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
+	rawData, err := ioutil.ReadFile("assets/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
 	if err != nil {
 		panic(err)
 	}
@@ -56,5 +56,5 @@ func (r Release) GetIcons() Icons {
 }
 
 func (r Release) GetSvg(s string) ([]byte, error) {
-	return ioutil.ReadFile("vendor/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
+	return ioutil.ReadFile("assets/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
 }
