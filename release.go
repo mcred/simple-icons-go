@@ -3,28 +3,38 @@ package simple_icons_go
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"io"
 	"io/ioutil"
 	"os"
+	"path"
+	"runtime"
 	"strings"
 )
 
 type Release struct {
-	Version string
-	File    string
+	Version    string
+	ModuleRoot string
 }
 
 func LoadRelease(v string) Release {
+	_, filename, _, ok := runtime.Caller(1)
+	if !ok {
+		panic(errors.New("unable to find module root"))
+	}
 	r := Release{
-		Version: v,
-		File:    "assets/simple-icons/" + v + ".zip",
+		Version:    v,
+		ModuleRoot: path.Dir(filename),
 	}
 	return r
 }
 
 func (r Release) GetSlugs() []Slug {
 	var s []Slug
-	file, _ := os.Open("assets/simple-icons/simple-icons-" + r.Version + "/slugs.md")
+	file, err := os.Open(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/slugs.md")
+	if err != nil {
+		panic(err)
+	}
 	reader := bufio.NewReader(file)
 	for {
 		line, err := reader.ReadString('\n')
@@ -44,7 +54,7 @@ func (r Release) GetSlugs() []Slug {
 
 func (r Release) GetIcons() Icons {
 	var i Icons
-	rawData, err := ioutil.ReadFile("assets/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
+	rawData, err := ioutil.ReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
 	if err != nil {
 		panic(err)
 	}
@@ -56,5 +66,5 @@ func (r Release) GetIcons() Icons {
 }
 
 func (r Release) GetSvg(s string) ([]byte, error) {
-	return ioutil.ReadFile("assets/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
+	return ioutil.ReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
 }
