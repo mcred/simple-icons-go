@@ -36,7 +36,7 @@ func TestSimpleIcon_Get(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			si := SimpleIcon{}
+			si := Load()
 			got, err := si.Get(tt.args.slug)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Get() error = %v, wantErr %v", err, tt.wantErr)

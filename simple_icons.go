@@ -8,23 +8,26 @@ import (
 //go:embed SI_VERSION
 var version string
 
-var release Release
-var slugs []Slug
-var icons Icons
+type SimpleIcon struct {
+	release Release
+	slugs   []Slug
+	icons   Icons
+}
 
-type SimpleIcon struct{}
-
-func init() {
-	release = LoadRelease(version)
-	slugs = release.GetSlugs()
-	icons = release.GetIcons()
+func Load() SimpleIcon {
+	release := LoadRelease(version)
+	return SimpleIcon{
+		release: release,
+		slugs:   release.GetSlugs(),
+		icons:   release.GetIcons(),
+	}
 }
 
 func (si SimpleIcon) Get(slug string) (Icon, error) {
-	for _, s := range slugs {
+	for _, s := range si.slugs {
 		if s.Slug == slug {
-			icon := icons.getByName(s.Name)
-			svg, err := release.GetSvg(s.Slug)
+			icon := si.icons.getByName(s.Name)
+			svg, err := si.release.GetSvg(s.Slug)
 			if err != nil {
 				goto end
 			}
