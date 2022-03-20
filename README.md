@@ -1,5 +1,6 @@
 # Simple Icons Go
 [![Maintainability](https://api.codeclimate.com/v1/badges/0f949ef474978655b7bf/maintainability)](https://codeclimate.com/github/mcred/simple-icons-go/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0f949ef474978655b7bf/test_coverage)](https://codeclimate.com/github/mcred/simple-icons-go/test_coverage)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mcred/simple-icons-go)
 ![GitHub all releases](https://img.shields.io/github/downloads/mcred/simple-icons-go/total)
 
