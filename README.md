@@ -1,6 +1,6 @@
 # Simple Icons Go
 
-Golang wrapper for the [simple-icons](https://github.com/simple-icons/simple-icons) repo. Browse icons on their [website](https://simpleicons.org/)
+Go wrapper for the [simple-icons](https://github.com/simple-icons/simple-icons) repo. Browse icons on their [website](https://simpleicons.org/)
 
 # Installation
 ```shell
