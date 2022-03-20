@@ -14,5 +14,5 @@ test:
 	go test ./... -v
 
 cover:
-	go test ./... -coverpkg=./... -coverprofile cp.out
-	go tool cover -html=cp.out
+	go test ./... -coverpkg=./... -coverprofile c.out
+	go tool cover -html=c.out
