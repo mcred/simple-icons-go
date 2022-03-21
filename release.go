@@ -12,28 +12,36 @@ import (
 	"strings"
 )
 
+//functions to override during testing
+var (
+	runtimeCaller  = runtime.Caller
+	osOpen         = os.Open
+	ioutilReadFile = ioutil.ReadFile
+	jsonUnmarshall = json.Unmarshal
+)
+
 type Release struct {
 	Version    string
 	ModuleRoot string
 }
 
-func LoadRelease(v string) Release {
-	_, filename, _, ok := runtime.Caller(1)
+func LoadRelease(v string) (Release, error) {
+	_, filename, _, ok := runtimeCaller(1)
 	if !ok {
-		panic(errors.New("unable to find module root"))
+		return Release{}, errors.New("unable to find module root")
 	}
 	r := Release{
 		Version:    v,
 		ModuleRoot: path.Dir(filename),
 	}
-	return r
+	return r, nil
 }
 
-func (r Release) GetSlugs() []Slug {
+func (r Release) GetSlugs() ([]Slug, error) {
 	var s []Slug
-	file, err := os.Open(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/slugs.md")
+	file, err := osOpen(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/slugs.md")
 	if err != nil {
-		panic(err)
+		return []Slug{}, errors.New("unable to open slugs source")
 	}
 	reader := bufio.NewReader(file)
 	for {
@@ -49,22 +57,22 @@ func (r Release) GetSlugs() []Slug {
 			break
 		}
 	}
-	return s
+	return s, nil
 }
 
-func (r Release) GetIcons() Icons {
+func (r Release) GetIcons() (Icons, error) {
 	var i Icons
-	rawData, err := ioutil.ReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
+	rawData, err := ioutilReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/_data/simple-icons.json")
 	if err != nil {
-		panic(err)
+		return i, errors.New("unable to open simple-icons source")
 	}
-	err = json.Unmarshal(rawData, &i)
+	err = jsonUnmarshall(rawData, &i)
 	if err != nil {
-		panic(err)
+		return i, errors.New("unable to unmarshall simple-icons source")
 	}
-	return i
+	return i, nil
 }
 
 func (r Release) GetSvg(s string) ([]byte, error) {
-	return ioutil.ReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
+	return ioutilReadFile(r.ModuleRoot + "/assets/simple-icons/simple-icons-" + r.Version + "/icons/" + s + ".svg")
 }

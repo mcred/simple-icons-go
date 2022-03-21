@@ -2,7 +2,6 @@ package simple_icons_go
 
 import (
 	_ "embed" // Embed Import for Package Files
-	"errors"
 )
 
 //go:embed SI_VERSION
@@ -14,28 +13,29 @@ type SimpleIcon struct {
 	icons   Icons
 }
 
-func Load() SimpleIcon {
-	release := LoadRelease(version)
+func Load() (SimpleIcon, error) {
+	release, err := LoadRelease(version)
+	slugs, err := release.GetSlugs()
+	icons, err := release.GetIcons()
 	return SimpleIcon{
 		release: release,
-		slugs:   release.GetSlugs(),
-		icons:   release.GetIcons(),
-	}
+		slugs:   slugs,
+		icons:   icons,
+	}, err
 }
 
 func (si SimpleIcon) Get(slug string) (Icon, error) {
+	icon := Icon{}
 	for _, s := range si.slugs {
 		if s.Slug == slug {
-			icon := si.icons.getByName(s.Name)
+			icon = si.icons.getByName(s.Name)
 			svg, err := si.release.GetSvg(s.Slug)
 			if err != nil {
-				goto end
+				return icon, err
 			}
 			icon.Slug = s.Slug
 			icon.Svg = string(svg)
-			return icon, nil
 		}
 	}
-end:
-	return Icon{}, errors.New("unable to load icon")
+	return icon, nil
 }

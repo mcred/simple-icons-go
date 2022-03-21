@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestSimpleIcon_Get(t *testing.T) {
+func TestLoadPackage_Get(t *testing.T) {
 	type args struct {
 		slug string
 	}
@@ -17,7 +17,7 @@ func TestSimpleIcon_Get(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "can get by slug",
+			name: "can load package",
 			args: args{slug: "backbonedotjs"},
 			want: simple_icons_go.Icon{
 				Title:   "Backbone.js",
@@ -29,20 +29,11 @@ func TestSimpleIcon_Get(t *testing.T) {
 			},
 			wantErr: false,
 		},
-		{
-			name:    "expect fail by slug",
-			args:    args{slug: "bad_slug_88"},
-			wantErr: true,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			si := simple_icons_go.Load()
-			got, err := si.Get(tt.args.slug)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Get() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
+			si, _ := simple_icons_go.Load()
+			got, _ := si.Get(tt.args.slug)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Get() got = %v, want %v", got, tt.want)
 			}
