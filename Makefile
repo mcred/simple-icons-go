@@ -15,4 +15,6 @@ test:
 
 cover:
 	go test ./... -coverpkg=./... -coverprofile c.out
+
+report: cover
 	go tool cover -html=c.out

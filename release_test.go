@@ -9,128 +9,53 @@ import (
 	"testing"
 )
 
-func TestLoadRelease(t *testing.T) {
-	type args struct {
-		v string
+func TestRelease_Load(t *testing.T) {
+	_, err := LoadRelease("0.0.0")
+	if err != nil {
+		t.Error("release failed to load")
 	}
-	tests := []struct {
-		name     string
-		args     args
-		want     Release
-		mockFunc func()
-		wantErr  bool
-	}{
-		{
-			name: "module root fails to load",
-			args: args{"0.0.0"},
-			mockFunc: func() {
-				runtimeCaller = func(skip int) (pc uintptr, file string, line int, ok bool) {
-					return 2, "file", 0, false
-				}
-			},
-			wantErr: true,
-		},
+}
+
+func TestRelease_LoadFails(t *testing.T) {
+	runtimeCaller = func(skip int) (pc uintptr, file string, line int, ok bool) {
+		return 2, "file", 0, false
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tt.mockFunc()
-			_, err := LoadRelease(tt.args.v)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("LoadRelease() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-		})
+	_, err := LoadRelease("0.0.0")
+	if err == nil {
+		t.Error("module root expected failure")
 	}
 	runtimeCaller = runtime.Caller
 }
 
-func TestRelease_GetIcons(t *testing.T) {
-	type fields struct {
-		Version    string
-		ModuleRoot string
+func TestRelease_GetIconSourceFails(t *testing.T) {
+	ioutilReadFile = func(filename string) ([]byte, error) {
+		return nil, errors.New("unable to open file")
 	}
-	tests := []struct {
-		name     string
-		fields   fields
-		want     Icons
-		mockFunc func()
-		wantErr  bool
-	}{
-		{
-			name:   "icons file fails to open",
-			fields: fields{"0.0.0", "tests"},
-			mockFunc: func() {
-				ioutilReadFile = func(filename string) ([]byte, error) {
-					return nil, errors.New("unable to open file")
-				}
-			},
-			wantErr: true,
-		},
-		{
-			name:   "icons file fails to unmarshall",
-			fields: fields{"0.0.0", "tests"},
-			mockFunc: func() {
-				jsonUnmarshall = func(data []byte, v interface{}) error {
-					return errors.New("unable to unmarshall")
-				}
-			},
-			wantErr: true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tt.mockFunc()
-			r := Release{
-				Version:    tt.fields.Version,
-				ModuleRoot: tt.fields.ModuleRoot,
-			}
-			_, err := r.GetIcons()
-			if (err != nil) != tt.wantErr {
-				t.Errorf("GetIcons() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-		})
+	_, err := testRelease.GetIcons()
+	if err == nil {
+		t.Error("get icon expected file failure")
 	}
 	ioutilReadFile = ioutil.ReadFile
+}
+
+func TestRelease_GetIconUnmarshallFails(t *testing.T) {
+	jsonUnmarshall = func(data []byte, v interface{}) error {
+		return errors.New("unable to unmarshall")
+	}
+	_, err := testRelease.GetIcons()
+	if err == nil {
+		t.Error("get icon expected json unmarshall failure")
+	}
 	jsonUnmarshall = json.Unmarshal
 }
 
-func TestRelease_GetSlugs(t *testing.T) {
-	type fields struct {
-		Version    string
-		ModuleRoot string
+func TestRelease_GetSlugsFails(t *testing.T) {
+	osOpen = func(name string) (*os.File, error) {
+		return nil, errors.New("unable to open file")
 	}
-	tests := []struct {
-		name     string
-		fields   fields
-		want     []Slug
-		mockFunc func()
-		wantErr  bool
-	}{
-		{
-			name:   "slugs file fails to open",
-			fields: fields{"0.0.0", "tests"},
-			mockFunc: func() {
-				osOpen = func(name string) (*os.File, error) {
-					return nil, errors.New("unable to open file")
-				}
-			},
-			wantErr: true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tt.mockFunc()
-			r := Release{
-				Version:    tt.fields.Version,
-				ModuleRoot: tt.fields.ModuleRoot,
-			}
-			_, err := r.GetSlugs()
-			if (err != nil) != tt.wantErr {
-				t.Errorf("GetSlugs() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-		})
+	_, err := testRelease.GetSlugs()
+	if err == nil {
+		t.Error("get slugs expected file failure")
 	}
 	osOpen = os.Open
 }
