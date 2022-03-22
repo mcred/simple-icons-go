@@ -20,7 +20,10 @@ import (
 )
 
 func main() {
-	icons := simple_icons_go.Load()
+	icons,err := simple_icons_go.Load()
+	if err != nil {
+		panic(err)
+	}
 	icon, err := icons.Get("liquibase")
 	if err != nil {
 		panic(err)
