@@ -1,0 +1,37 @@
+name: Check Simple Icons Releases
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 6 * * *'
+
+jobs:
+  update-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update Simple Icons Version
+        run: ./scripts/get-latest-si-release.sh
+        env:
+          GITHUB_PAT: ${{ secrets.BOT_TOKEN }}
+
+      - name: Update Assets
+        run: make source
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Automatic update to Simple Icons
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: update/simple-icons
+          delete-branch: true
+          title: '[Automatic] Update Simple Icons'
+          body: |
+            Automatic update to Simple Icons
+          labels: |
+            assets
+          draft: false
