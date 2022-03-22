@@ -13,6 +13,8 @@ LATEST_TAG=$(curl -s -X GET -H "Authorization: token $GITHUB_PAT" \
 
 CURRENT_TAG=$(cat SI_VERSION)
 
+echo $LATEST_TAG
+
 if [[ "$CURRENT_TAG" != "$LATEST_TAG" ]]; then
   echo $LATEST_TAG > SI_VERSION
 fi
