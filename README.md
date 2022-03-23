@@ -1,7 +1,7 @@
 # Simple Icons Go
 [![Maintainability](https://api.codeclimate.com/v1/badges/0f949ef474978655b7bf/maintainability)](https://codeclimate.com/github/mcred/simple-icons-go/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0f949ef474978655b7bf/test_coverage)](https://codeclimate.com/github/mcred/simple-icons-go/test_coverage)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mcred/simple-icons-go)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/mcred/simple-icons-go)
 ![Unique Clones](https://img.shields.io/endpoint?url=https://6nxmsr2v39.execute-api.us-east-1.amazonaws.com/simple-icons-go)
 
 Go wrapper for the [simple-icons](https://github.com/simple-icons/simple-icons) repo. Browse icons on their [website](https://simpleicons.org/)
