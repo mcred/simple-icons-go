@@ -117,6 +117,7 @@ echo file_get_contents('path/to/package/icons/simpleicons.svg');
 | Extension | Author |
 | :-- | :-- |
 | <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/angular.svg" alt="Angular" align=left width=24 height=24> [Angular Module](https://github.com/avmaisak/ngx-simple-icons) | [@avmaisak](https://github.com/avmaisak) |
+| <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/blazor.svg" alt="Blazor" align=left width=24 height=24> [Blazor Nuget](https://github.com/TimeWarpEngineering/timewarp-simple-icons) | [@TimeWarpEngineering](https://github.com/TimeWarpEngineering) |
 | <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/blender.svg" alt="Blender" align=left width=24 height=24> [Blender add-on](https://github.com/mondeja/simple-icons-blender) | [@mondeja](https://github.com/mondeja) |
 | <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/diagramsdotnet.svg" alt="Drawio" align=left width=24 height=24> [Drawio library](https://github.com/mondeja/simple-icons-drawio) | [@mondeja](https://github.com/mondeja) |
 | <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/drupal.svg" alt="Drupal" align=left width=24 height=24> [Drupal module](https://www.drupal.org/project/simple_icons) | [Phil Wolstenholme](https://www.drupal.org/u/phil-wolstenholme) |
