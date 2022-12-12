@@ -3,7 +3,7 @@ import {
   getIconSlug,
   slugToVariableName,
 } from '../scripts/utils.js';
-import * as simpleIcons from '../icons.mjs';
+import * as simpleIcons from '../index.mjs';
 import { testIcon } from './test-icon.js';
 
 (async () => {
