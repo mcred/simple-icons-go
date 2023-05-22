@@ -1478,6 +1478,11 @@
             "source": "https://en.wikipedia.org/wiki/File:Bentley_logo_2.svg"
         },
         {
+            "title": "Bento",
+            "hex": "768CFF",
+            "source": "https://bento.me"
+        },
+        {
             "title": "Betfair",
             "hex": "FFB80B",
             "source": "https://partnerships.betfair.com/"
@@ -9865,6 +9870,11 @@
             "guidelines": "https://corp.roblox.com/wp-content/uploads/2021/03/Logo_Roblox.zip"
         },
         {
+            "title": "Roblox Studio",
+            "hex": "00A2FF",
+            "source": "https://create.roblox.com/assets/common/studio_white.svg"
+        },
+        {
             "title": "Robot Framework",
             "hex": "000000",
             "source": "https://github.com/robotframework/visual-identity/tree/fadf8cda9f79ea31987a214f0047cca9626327b7",
@@ -13301,6 +13311,11 @@
             "title": "Zigbee",
             "hex": "EB0443",
             "source": "https://zigbeealliance.org/solution/zigbee/"
+        },
+        {
+            "title": "Zilch",
+            "hex": "00D287",
+            "source": "https://www.zilch.com/"
         },
         {
             "title": "Zillow",
