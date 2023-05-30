@@ -28,15 +28,15 @@ Icons can be downloaded as SVGs directly from [our website](https://simpleicons.
 Icons can be served from a CDN such as [JSDelivr](https://www.jsdelivr.com/package/npm/simple-icons) or [Unpkg](https://unpkg.com/browse/simple-icons/). Simply use the `simple-icons` npm package and specify a version in the URL like the following:
 
 ```html
-<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/[ICON SLUG].svg" />
-<img height="32" width="32" src="https://unpkg.com/simple-icons@v8/icons/[ICON SLUG].svg" />
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/[ICON SLUG].svg" />
+<img height="32" width="32" src="https://unpkg.com/simple-icons@v9/icons/[ICON SLUG].svg" />
 ```
 
 Where `[ICON SLUG]` is replaced by the [slug] of the icon you want to use, for example:
 
 ```html
-<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/simpleicons.svg" />
-<img height="32" width="32" src="https://unpkg.com/simple-icons@v8/icons/simpleicons.svg" />
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/simpleicons.svg" />
+<img height="32" width="32" src="https://unpkg.com/simple-icons@v9/icons/simpleicons.svg" />
 ```
 
 These examples use the latest major version. This means you won't receive any updates following the next major release. You can use `@latest` instead to receive updates indefinitely. However, this will result in a `404` error if the icon is removed.
@@ -155,6 +155,7 @@ echo file_get_contents('path/to/package/icons/simpleicons.svg');
 | [Drupal module](https://www.drupal.org/project/simple_icons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/drupal.svg" alt="Drupal" align="left" width="24" height="24"> | [Phil Wolstenholme](https://www.drupal.org/u/phil-wolstenholme) |
 | [Figma plugin](https://www.figma.com/community/plugin/1149614463603005908/Simple-Icons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/figma.svg" alt="Figma" align="left" width="24" height="24"> | [@LitoMore](https://github.com/LitoMore) |
 | [Flutter package](https://pub.dev/packages/simple_icons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/flutter.svg" alt="Flutter" align="left" width="24" height="24"> | [@jlnrrg](https://jlnrrg.github.io/) |
+| [Framer component](https://github.com/LitoMore/simple-icons-framer) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/framer.svg" alt="Framer" align="left" width="24" height="24"> | [@LitoMore](https://github.com/LitoMore) |
 | [Hexo plugin](https://github.com/nidbCN/hexo-simpleIcons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hexo.svg" alt="Hexo" align="left" width="24" height="24"> | [@nidbCN](https://github.com/nidbCN/) |
 | [Home Assistant plugin](https://github.com/vigonotion/hass-simpleicons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/homeassistant.svg" alt="Home Assistant" align="left" width="24" height="24"> | [@vigonotion](https://github.com/vigonotion/) |
 | [Hugo module](https://github.com/foo-dogsquared/hugo-mod-simple-icons) <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hugo.svg" alt="Hugo" align="left" width="24" height="24"> | [@foo-dogsquared](https://github.com/foo-dogsquared) |
